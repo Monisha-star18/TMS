@@ -23,6 +23,7 @@
     <div class="avatar-row d-flex flex-column">
         <div class="oc-name" id="oc-name">—</div>
         <div class="oc-role" id="oc-dept">—</div>
+        <button class="btn btn-danger" onclick="handleLogout()">Logout</button>
     </div>
 
     
@@ -52,7 +53,7 @@
       <button class="btn btn-primary" data-bs-dismiss="offcanvas">
          Close
       </button>
-      <button class="btn btn-danger" onclick="handleLogout()">Logout</button>
+      
     </div>
 
   </div>
@@ -109,6 +110,7 @@
           <div class="col-6">
             <label class="field-label">Transport mode</label>
             <select class="field-select" id="a-mode">
+              <option value="" selected disabled>-- Select Mode of Transport --</option>
               <option value="plane">✈️ Plane</option>
               <option value="car">🚗 Car</option>
               <option value="train">🚆 Train</option>
@@ -181,6 +183,7 @@
           <div class="col-6">
             <label class="field-label">Transport mode</label>
             <select class="field-select" id="e-mode">
+              <option value="" selected disabled>-- Select Mode of Transport --</option>
               <option value="plane">✈️ Plane</option>
               <option value="car">🚗 Car</option>
               <option value="train">🚆 Train</option>
@@ -207,7 +210,7 @@
       <i class="ti ti-plane" style="font-size:15px;vertical-align:-2px;margin-right:4px" aria-hidden="true"></i>TravelSync
     </span>
     <div class="nav-actions">
-      <button class="btn btn-icon" data-bs-toggle="offcanvas" data-bs-target="#userOffcanvas" title="Profile">
+      <button class="btn btn-icon" data-bs-toggle="offcanvas" data-bs-target="#userOffcanvas" title="Profile" id="Profile">
         <i class="ti ti-user" style="font-size:16px" aria-hidden="true"></i>
       </button>
       <span class="nav-username" id="nav-username">—</span>

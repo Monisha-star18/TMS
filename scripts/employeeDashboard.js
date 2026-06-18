@@ -115,19 +115,19 @@ function displayMetrics() {
   const p   = requests.filter(r => r.status === "pending").length;
   const rej = requests.filter(r => r.status === "rejected").length;
   document.getElementById("metrics").innerHTML = `
-    <div class="metric" style="background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary)">
+    <div class="metric" style="background:linear-gradient(135deg,#7C3AED 0%,#C084FC 100%);border:0.5px solid var(--color-border-tertiary);">
       <div class="metric-label">Total</div>
       <div class="metric-val" style="color:var(--brand)">${t}</div>
     </div>
-    <div class="metric" style="background:#ECFDF5;border:0.5px solid #21e898">
+    <div class="metric" style="background:linear-gradient(135deg,#059669 0%,#34D399 100%);border:0.5px solid #21e898">
       <div class="metric-label">Accepted</div>
       <div class="metric-val" style="color:#065F46">${a}</div>
     </div>
-    <div class="metric" style="background:#FFFBEB;border:0.5px solid #FCD34D">
+    <div class="metric" style="background:linear-gradient(135deg,#F59E0B 0%,#FBBF24 100%);border:0.5px solid #FCD34D">
       <div class="metric-label">Pending</div>
       <div class="metric-val" style="color:#92400E">${p}</div>
     </div>
-    <div class="metric" style="background:#FEF2F2;border:0.5px solid #FCA5A5">
+    <div class="metric" style="background:linear-gradient(135deg,#E11D48 0%,#FB7185 100%);border:0.5px solid #FCA5A5">
       <div class="metric-label">Rejected</div>
       <div class="metric-val" style="color:#991B1B">${rej}</div>
     </div>`;
@@ -193,7 +193,7 @@ function renderRestoreModal()
           <div class="card-left">
             <div>
               <div class="trip-title">${r.from} → ${r.to}</div>
-              <div class="trip-sub">${r.purpose} · ${r.days || "-"} days · ₹${r.cost}</div>
+              <div class="trip-sub">${r.purpose} · ${days} days · ₹${r.cost}</div>
             </div>
           </div>
           <div class="card-right">
@@ -335,6 +335,22 @@ function validateRequestForm(prefix) {
     validatePurpose(prefix),
     validateCost(prefix)
   ];
+
+  const modeEl = document.getElementById(`${prefix}-mode`);
+  let isModeValid = true;
+
+  if (!modeEl.value || modeEl.value === "") {
+    modeEl.classList.add("is-invalid");
+    modeEl.classList.remove("is-valid");
+    isModeValid = false;
+  } else {
+    modeEl.classList.remove("is-invalid");
+    modeEl.classList.add("is-valid");
+    isModeValid = true;
+  }
+
+  results.push(isModeValid);
+
   return !results.includes(false);
 }
 
@@ -379,22 +395,17 @@ function displayCards() {
   function dayBetween(startDate, endDate) {
     const start = new Date(startDate);
     const end = new Date(endDate);
-
     return Math.floor((end - start) / (1000 * 60 * 60 * 24)) + 1;
-}
+  }
 
-function formateDate(dateString) {
+  function formateDate(dateString) {
     return new Date(dateString).toLocaleDateString('en-GB');
-}
+  }
 
   c.innerHTML = filtered.map(r => {
     const mc       = modeColors[r.mode] || modeColors.plane;
     const icon     = modeIcons[r.mode]  || "ti-plane";
     const days     = dayBetween(r.startDate, r.endDate);
-    const dateRange = (r.startDate && r.endDate)
-      ? `${formateDate(r.startDate)} – ${formateDate(r.endDate)}`
-      : "—";
-
 
     return `
     <div class="request-card" style="border-left:6px solid ${statusBorder[r.status] || '#ccc'}">
@@ -405,7 +416,7 @@ function formateDate(dateString) {
           </div>
           <div>
             <div class="trip-title">${r.from} → ${r.to}</div>
-            <div class="trip-sub">${r.purpose} · ${r.days || "-"} days · ₹${r.cost}</div>
+            <div class="trip-sub">${r.purpose} · ${days || "-"} days · ₹${r.cost}</div>
           </div>
         </div>
         <div class="card-right">
@@ -413,7 +424,6 @@ function formateDate(dateString) {
 
           ${r.status === "pending" ? `
             <button class="btn-outline-primary" onclick="openEditModal('${r.id}')"> <i class="ti ti-pencil" style="font-size:12px"></i> Edit </button>
-
             <button class="btn-outline-danger" onclick="deleteCard('${r.id}')"> <i class="ti ti-trash" style="font-size:12px"></i> Delete </button> ` : ""}
         </div>
       </div>
@@ -421,6 +431,7 @@ function formateDate(dateString) {
         <i class="ti ti-chevron-${r.open ? "up" : "down"}"></i>
         ${r.open ? "Hide details" : "Show details"}
       </button>
+      
       ${r.open ? `
       <div class="details-grid">
         <div><div class="detail-label">From</div><div class="detail-val">${r.from}</div></div>
@@ -429,6 +440,21 @@ function formateDate(dateString) {
         <div><div class="detail-label">End date</div><div class="detail-val">${formateDate(r.endDate)}</div></div>
         <div class="detail-wide"><div class="detail-label">Purpose</div><div class="detail-val">${r.purpose}</div></div>
         <div class="detail-wide"><div class="detail-label">Est. cost</div><div class="detail-val">₹${r.cost}</div></div>
+        
+        ${r.status !== 'pending' ? `
+          <div class="detail-wide" style="border-top: 1px dashed #ccc; padding-top: 8px; margin-top: 4px;">
+            <div class="detail-label">Manager Remark</div>
+            <div class="detail-val" style="font-weight: 500; color: ${r.status === 'accepted' ? '#05b87f' : '#f71919'}">
+              ${r.remark || "—"}
+            </div>
+          </div>
+          <div class="detail-wide">
+            <div class="detail-label">Actioned On</div>
+            <div class="detail-val" style="font-size: 13px; color: #6B7280;">
+              ${r.actionDate ? formateDate(r.actionDate) : "—"}
+            </div>
+          </div>
+        ` : ""}
       </div>` : ""}
     </div>`;
   }).join("");

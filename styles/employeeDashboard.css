@@ -36,14 +36,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--font-sans);background:linear-gradient(145deg,#CDD7F0 0%,#E3E9F7 50%,#F2F4F9 100%);min-height:100vh;font-size:15px}
+body{font-family:var(--font-sans);background:linear-gradient(145deg,#dde3f0 0%,#E3E9F7 50%,#F2F4F9 100%);min-height:100vh;font-size:15px}
 
 .page{padding:1rem;position:relative}
 
 /* ─── Navbar ─────────────────────────────────────────────────────── */
-.nav{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background: #EBF0FF ;margin-bottom:20px;}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;background:linear-gradient(135deg,#0D1A3A 0%,#1B2E5E 100%);margin-bottom:20px;}
 .nav-brand{font-weight:700;font-size:17px;color:#E8AB30;letter-spacing:-0.01em}
 .nav-actions{display:flex;gap:8px;align-items:center}
+#Profile {color:#E8AB30 ;}
+#nav-username {color:#E8AB30 ;}
 
 /* ─── Buttons ────────────────────────────────────────────────────── */
 .btn{cursor:pointer;border:0.5px solid var(--color-border-secondary);background:transparent;border-radius:var(--border-radius-md);padding:7px 14px;font-size:14px;color:var(--color-text-primary);font-family:var(--font-sans)}

@@ -1,3 +1,17 @@
+
+  function clearLoginForm() {
+    console.log("hi")
+  $("#LoginemployeeID, #password").val("").removeClass("is-valid is-invalid");
+  $("#LoginEmpidDesc").hide().text("");
+}
+
+function clearSignUpForm() {
+  $("#SignName, #SignemployeeID, #email, #SignPassword, #Conformpassword, #DateOfJoin, #signProjectID, #Designation").val("").removeClass("is-valid is-invalid");
+  $("#Signdepartment").val("").removeClass("is-valid is-invalid");
+  $("#SignNamedesc, #Signempiddesc, #emailDesc, #passworddesc, #Conformpassworddesc, #dateOfJoinDesc, #signprojectidesc, #designationdesc, #departmentdesc").hide().text("");
+}
+
+
 const API = "http://localhost:3000";
 
 const emailRegex       = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -126,16 +140,6 @@ $(document).ready(function () {
     return true;
   });
 
-  function clearLoginForm() {
-  $("#LoginemployeeID, #password").val("").removeClass("is-valid is-invalid");
-  $("#LoginEmpidDesc").hide().text("");
-}
-
-function clearSignUpForm() {
-  $("#SignName, #SignemployeeID, #email, #SignPassword, #Conformpassword, #DateOfJoin, #signProjectID, #Designation").val("").removeClass("is-valid is-invalid");
-  $("#Signdepartment").val("").removeClass("is-valid is-invalid");
-  $("#SignNamedesc, #Signempiddesc, #emailDesc, #passworddesc, #Conformpassworddesc, #dateOfJoinDesc, #signprojectidesc, #designationdesc, #departmentdesc").hide().text("");
-}
 
   // ── Sign-up submit ───────────────────────────────────────────────────────
   $("#register").on("click", async function (e) {
