@@ -72,9 +72,12 @@ The system provides a clear, centralized platform for auditing company travel an
 
 ```plaintext
 TMS/
-│
-├── db.json                       # Central local mock database file
+│                     
 ├── README.md                     # Documentation file
+│
+├── data/
+│   └──db.json                    # Central local mock database file
+│
 │
 ├── pages/
 │   ├── index.html                # Registration / Entry portal page
@@ -146,6 +149,7 @@ npm install -g json-server
 ## 4️⃣ Start JSON Server
 
 ```bash
+cd data
 json-server --watch db.json --port 3000
 
 ```
