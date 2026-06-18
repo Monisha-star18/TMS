@@ -423,8 +423,8 @@ function displayCards() {
           ${statusBtn(r)}
 
           ${r.status === "pending" ? `
-            <button class="btn-outline-primary" onclick="openEditModal('${r.id}')"> <i class="ti ti-pencil" style="font-size:12px"></i> Edit </button>
-            <button class="btn-outline-danger" onclick="deleteCard('${r.id}')"> <i class="ti ti-trash" style="font-size:12px"></i> Delete </button> ` : ""}
+            <button class="btn-info rounded-pill" onclick="openEditModal('${r.id}')"> <i class="ti ti-pencil" style="font-size:12px"></i> Edit </button>
+            <button class="btn-danger" onclick="deleteCard('${r.id}')"> <i class="ti ti-trash" style="font-size:12px"></i> Delete </button> ` : ""}
         </div>
       </div>
       <button class="toggle-btn" onclick="toggleCard('${r.id}')">
