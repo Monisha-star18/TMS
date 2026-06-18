@@ -89,8 +89,9 @@ TMS/
 └── styles/
     ├── theme.css                 # Color palettes, typography & roots
     └── sharedDashboard.css       # Unified interface layout styles
+---
 
-📸 Screenshots
+#📸 Screenshots
 
 Landing & Authentication Page
 
@@ -103,29 +104,32 @@ Manager Dashboard Overview
 
 Review Action Modal
 
+---
 
-🚀 Installation
+#🚀 Installation
 
-1️⃣ Clone Repository
+#1️⃣ Clone Repository
 git clone [https://github.com/Monisha-star18/TMS.git](https://github.com/Monisha-star18/TMS.git)
 
 
-2️⃣ Navigate to Project
+#2️⃣ Navigate to Project
 cd TMS
 
-3️⃣ Install JSON Server
+#3️⃣ Install JSON Server
 npm install -g json-server
 
-4️⃣ Start JSON Server
+#4️⃣ Start JSON Server
 json-server --watch db.json --port 3000
 
-5️⃣ Run Project
+#5️⃣ Run Project
 pages/index.html
 using Live Server or any local static web hosting environment.
 
+---
 
-🎯 Key Functionalities
-Employee
+#🎯 Key Functionalities
+
+#Employee
 Register and Login securely
 
 Create dynamic trip details with custom pricing arrays
@@ -136,7 +140,7 @@ Live calculation counters for status types
 
 Read direct manager rejection context notes
 
-Manager
+#Manager
 Auto-filter incoming requests scoped to specific project zones
 
 Grant instant approval status modifications
@@ -145,5 +149,7 @@ Fill out precise text reasons before enforcing rejection updates
 
 View high-level team summary reports
 
-🏆 Conclusion
+---
+
+#🏆 Conclusion
 Taskify offers an effective, easy-to-use solution for automating company travel requests. By isolating workflows between individual employee requests and project managers, the system ensures complete accountability, zero data loss via soft deletion, and fast execution speeds using modern asynchronous web development methodologies.
