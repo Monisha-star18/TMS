@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* ─── Brand palette — Deep Navy & Gold ─────────────────────────── */
+:root {
+  --brand:        #1B2E5E;
+  --brand-dark:   #0D1A3A;
+  --brand-mid:    #2E4A8A;
+  --brand-light:  #EBF0FF;
+  --accent:       #C9920A;
+  --accent-dark:  #9A6E05;
+  --accent-mid:   #E8AB30;
+  --accent-light: rgba(201,146,10,0.13);
+  --bg-page:      #F2F4F9;
+  --bg-card:      #ffffff;
+  --text-primary: #0D1A3A;
+  --text-muted:   #4A5578;
+  --text-light:   #8891AB;
+  --border:       rgba(27,46,94,0.14);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.65;
+  font-size: 15px;
+  background-color: var(--bg-page);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--brand);
+}
+
+/* ─── Navbar ────────────────────────────────────────────────────── */
+nav {
+  border-bottom: 1px solid rgba(201,146,10,0.25);
+  background: linear-gradient(90deg, #0D1A3A 0%, #1B2E5E 60%, #2E4A8A 100%) !important;
+}
+
+.navbar-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+}
+
+.btn-outline-info {
+  color: #E8AB30 !important;
+  border-color: rgba(232,171,48,0.60) !important;
+}
+.btn-outline-info:hover {
+  background: rgba(232,171,48,0.15) !important;
+  color: #E8AB30 !important;
+}
+
+/* ─── Tagline bar ───────────────────────────────────────────────── */
+#tagline {
+  background: linear-gradient(90deg, #C9920A 0%, #E8AB30 100%);
+  color: #0D1A3A;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* ─── Hero section ──────────────────────────────────────────────── */
+.landing {
+  padding: 5rem 0 4rem;
+  background: linear-gradient(145deg, #F2F4F9 0%, #E3E9F7 50%, #CDD7F0 100%);
+  position: relative;
+  overflow: hidden;
+}
+.landing::before {
+  content: '';
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,146,10,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.landing::after {
+  content: '';
+  position: absolute;
+  left: -60px;
+  bottom: -60px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(27,46,94,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.landing h1 {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--brand-dark);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+.ts-hero-sub {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* ─── CTA buttons ───────────────────────────────────────────────── */
+.btn-cta-primary {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.6rem;
+  background: linear-gradient(135deg, #C9920A 0%, #E8AB30 100%);
+  color: #0D1A3A;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(201,146,10,0.38);
+  transition: all 0.18s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-cta-primary:hover {
+  background: linear-gradient(135deg, #9A6E05 0%, #C9920A 100%);
+  color: #0D1A3A;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(201,146,10,0.50);
+}
+
+.btn-cta-secondary {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.4rem;
+  background: transparent;
+  color: var(--brand);
+  border: 1.5px solid var(--brand-mid);
+  border-radius: 8px;
+  transition: all 0.18s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn-cta-secondary:hover {
+  background: var(--brand-light);
+  color: var(--brand-dark);
+  border-color: var(--brand);
+}
+
+/* ─── Feature cards ─────────────────────────────────────────────── */
+.feature-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 14px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 3px solid linear-gradient(135deg, #9A6E05 0%, #C9920A 100%);
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(27,46,94,0.08), 0 6px 24px rgba(27,46,94,0.05);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 28px rgba(27,46,94,0.14);
+}
+.feature-card.tall {
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+}
+.feature-card .fc-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #EBF0FF 0%, #D6E0FF 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 0.7rem;
+}
+.feature-card.tall .fc-icon { margin-bottom: auto; }
+.feature-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--brand-dark);
+  margin-bottom: 0.25rem;
+}
+.feature-card.tall h4 { font-size: 1.1rem; margin-top: 0.75rem; }
+.feature-card p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin: 0;
+  line-height: 1.5;
+}
+.fc-stat {
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 0.2rem;
+}
+.fc-stat-label { font-size: 0.8rem; color: var(--text-light); }
+
+/* ─── About section ─────────────────────────────────────────────── */
+.About {
+  background: #ffffff;
+  padding: 3rem 0;
+}
+
+/* ─── Q&A section ───────────────────────────────────────────────── */
+.questions {
+  padding: 4rem 0;
+}
+.questions-text { color: var(--brand-dark); }
+.accordion-button:not(.collapsed) {
+  background-color: var(--brand-light);
+  color: var(--brand-dark);
+}
+.accordion-button:focus { box-shadow: 0 0 0 2px var(--accent-mid); }
+
+/* ─── Footer ────────────────────────────────────────────────────── */
+footer {
+  background: linear-gradient(90deg, #0D1A3A 0%, #1B2E5E 60%, #2E4A8A 100%) !important;
+  color: rgba(232,171,48,0.75);
+  border-top: 2px solid rgba(201,146,10,0.35);
+}
+footer a { color: #E8AB30; }
+footer a:hover { color: #fff; }
