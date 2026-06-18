@@ -1,3 +1,4 @@
+
 const API = "http://localhost:3000";
 
 
@@ -340,17 +341,15 @@ function validateRequestForm(prefix) {
   let isModeValid = true;
 
   if (!modeEl.value || modeEl.value === "") {
-    modeEl.classList.add("is-invalid");
-    modeEl.classList.remove("is-valid");
+    showFieldError(`${prefix}-mode`, "Please select a transport mode");
     isModeValid = false;
   } else {
-    modeEl.classList.remove("is-invalid");
+    clearFieldError(`${prefix}-mode`);
     modeEl.classList.add("is-valid");
     isModeValid = true;
   }
 
   results.push(isModeValid);
-
   return !results.includes(false);
 }
 
@@ -368,6 +367,15 @@ function clearRequestFormErrors(prefix) {
   document.getElementById(`${prefix}-end`).addEventListener("change", () => validateEndDate(prefix));
   document.getElementById(`${prefix}-purpose`).addEventListener("blur", () => validatePurpose(prefix));
   document.getElementById(`${prefix}-cost`).addEventListener("input", () => validateCost(prefix));
+  
+  // Add this to clear the error instantly upon selection!
+  document.getElementById(`${prefix}-mode`).addEventListener("change", () => {
+    const modeEl = document.getElementById(`${prefix}-mode`);
+    if (modeEl.value && modeEl.value !== "") {
+      clearFieldError(`${prefix}-mode`);
+      modeEl.classList.add("is-valid");
+    }
+  });
 });
 
 document.getElementById("addModal").addEventListener("show.bs.modal", () => clearRequestFormErrors("a"));
@@ -380,8 +388,8 @@ function displayCards() {
       (r.from || "").toLowerCase().includes(searchTerm) ||
       (r.to || "").toLowerCase().includes(searchTerm) ||
       (r.purpose || "").toLowerCase().includes(searchTerm) ||
-      (r.mode || "").toLowerCase().includes(searchTerm) ||
-      (r.status || "").toLowerCase().includes(searchTerm)
+      (r.status || "").toLowerCase().includes(searchTerm)||
+      (r.mode || "").toLowerCase().includes(searchTerm)
     );
   }
 
@@ -406,6 +414,8 @@ function displayCards() {
     const mc       = modeColors[r.mode] || modeColors.plane;
     const icon     = modeIcons[r.mode]  || "ti-plane";
     const days     = dayBetween(r.startDate, r.endDate);
+    // Capitalize mode for clean rendering
+    const displayMode = (r.mode || "plane").charAt(0).toUpperCase() + (r.mode || "plane").slice(1);
 
     return `
     <div class="request-card" style="border-left:6px solid ${statusBorder[r.status] || '#ccc'}">
@@ -433,13 +443,14 @@ function displayCards() {
       </button>
       
       ${r.open ? `
-      <div class="details-grid">
-        <div><div class="detail-label">From</div><div class="detail-val">${r.from}</div></div>
-        <div><div class="detail-label">To</div><div class="detail-val">${r.to}</div></div>
-        <div><div class="detail-label">Start date</div><div class="detail-val">${formateDate(r.startDate)}</div></div>
-        <div><div class="detail-label">End date</div><div class="detail-val">${formateDate(r.endDate)}</div></div>
+      <div class="details-grid responsive-details">
+        <div class="detail-item"><div class="detail-label">From</div><div class="detail-val">${r.from}</div></div>
+        <div class="detail-item"><div class="detail-label">To</div><div class="detail-val">${r.to}</div></div>
+        <div class="detail-item"><div class="detail-label">Start date</div><div class="detail-val">${formateDate(r.startDate)}</div></div>
+        <div class="detail-item"><div class="detail-label">End date</div><div class="detail-val">${formateDate(r.endDate)}</div></div>
+        <div class="detail-item"><div class="detail-label">Transport Mode</div><div class="detail-val">${displayMode}</div></div>
+        <div class="detail-item"><div class="detail-label">Est. cost</div><div class="detail-val">₹${r.cost}</div></div>
         <div class="detail-wide"><div class="detail-label">Purpose</div><div class="detail-val">${r.purpose}</div></div>
-        <div class="detail-wide"><div class="detail-label">Est. cost</div><div class="detail-val">₹${r.cost}</div></div>
         
         ${r.status !== 'pending' ? `
           <div class="detail-wide" style="border-top: 1px dashed #ccc; padding-top: 8px; margin-top: 4px;">
@@ -459,6 +470,7 @@ function displayCards() {
     </div>`;
   }).join("");
 }
+
 
 // ── Save: Add ─────────────────────────────────────────────────────────────────
 async function saveAdd() {

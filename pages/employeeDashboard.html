@@ -68,7 +68,7 @@
         <h5 class="modal-title" id="addModalLabel">
           <i class="ti ti-plus me-2"></i>New Travel Request
         </h5>
-        <button class="btn btn-secondary" type="button" onclick="clearLoginForm()">Clear</button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="modelclose"></button>
       </div>
 
       <div class="modal-body">
@@ -115,6 +115,7 @@
               <option value="car">🚗 Car</option>
               <option value="train">🚆 Train</option>
             </select>
+            <div id="a-mode-desc" class="invalid-feedback text-danger" style="font-size: 12px; margin-top: 4px;"></div>
           </div>
 
         </div>
@@ -140,7 +141,7 @@
         <h5 class="modal-title" id="editModalLabel">
           <i class="ti ti-pencil me-2"></i>Edit Travel Request
         </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="modelclose"></button>
       </div>
 
       <div class="modal-body">
@@ -238,7 +239,7 @@
     <div class="metrics" id="metrics"></div>
     <div class="search-bar">
       <i class="ti ti-search search-icon" aria-hidden="true"></i>
-      <input type="text" class="search-input" id="searchInput" placeholder="Search by destination or purpose...">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search by destination , purpose ,status or mode...">
     </div>
     <div class="filter-bar" id="filters"></div>
     <div id="cards-container"></div>
@@ -248,7 +249,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Deleted Requests</h5>
-              <button class="btn-close" data-bs-dismiss="modal"></button>
+              <button class="btn-close" data-bs-dismiss="modal" id="modelclose"></button>
             </div>
             <div class="modal-body" id="restoreContainer"></div>
           </div>

@@ -46,6 +46,7 @@ let searchTerm = "";
 async function getRequest() {
   const res = await fetch(`${API}/travelRequests?projectID=${user.projectID}&isDeleted=false`);
   requests   = await res.json();
+  
   displayAll();
 }
 
@@ -114,6 +115,8 @@ document.getElementById("searchInput").addEventListener("input", function () {
   displayCards();
 });
 
+
+
 function toggleCard(id) {
   const r = requests.find(r => r.id === id);
   if (r) { r.open = !r.open; displayCards(); }
@@ -137,7 +140,8 @@ function displayCards()
         (r.purpose || "").toLowerCase().includes(searchTerm) ||
         (r.employeeName || "").toLowerCase().includes(searchTerm) ||
         (r.employeeID || "").toLowerCase().includes(searchTerm) ||
-        (r.status || "").toLowerCase().includes(searchTerm)
+        (r.status || "").toLowerCase().includes(searchTerm)||
+        (r.mode || "").toLowerCase().includes(searchTerm)
       );
     }
 
@@ -162,20 +166,27 @@ function displayCards()
         const mc       = modeColors[r.mode] || modeColors.plane;
         const icon     = modeIcons[r.mode]  || "ti-plane";
         const days     = dayBetween(r.startDate, r.endDate);
+        const displayMode = (r.mode || "plane").charAt(0).toUpperCase() + (r.mode || "plane").slice(1);
 
       return `<div class="request-card" style="border-left:3px solid ${statusBorder[r.status] || '#ccc'}">
             <div class="card-header">
               <div class="card-left">
+                <!-- Transport Mode Icon Card Board Area -->
                 <div class="trip-icon" style="background:${mc.bg};color:${mc.color}">
                   <i class="ti ${icon}"></i>
                 </div>
-                <div>
-                  <div class="trip-title">${r.from} → ${r.to}</div>
-                  <div class="trip-sub">${r.purpose} · ${days} days · ₹${r.cost}</div>
-                  <div class="trip-sub" style="margin-top:3px;color:#6B7280;font-size:12px">
-                    <i class="ti ti-user" style="font-size:11px;vertical-align:-1px"></i>
-                    ${r.employeeName} &nbsp;·&nbsp; ${r.employeeID}
+                <div style="flex-grow: 1;">
+                  
+                  <!-- SEPARATED COMPLEMENTARY THEME CARD FOR EMPLOYEE HEADER -->
+                  <div class="employee-badge-card" style="background-color: rgba(255, 255, 255, 0.15); border-radius: 8px; padding: 6px 12px; margin-bottom: 10px; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(4px);">
+                    <i class="ti ti-user" style="font-size:14px; color: #E8AB30; vertical-align: middle;"></i>
+                    <span style="font-weight: 600; font-size: 14px; color: #ffffff;">${r.employeeName}</span>
+                    <span style="color: rgba(255, 255, 255, 0.7); font-size: 13px; font-weight: 400;">(ID: ${r.employeeID})</span>
                   </div>
+                  
+                  <!-- Location and Trip details below -->
+                  <div class="trip-title" style="font-size: 16px; font-weight: 500; color: #fff; margin-left: 4px;">${r.from} → ${r.to}</div>
+                  <div class="trip-sub" style="color: rgba(255, 255, 255, 0.72); font-size: 13px; margin-top: 2px; margin-left: 4px;">${r.purpose} · ${days} days · ₹${r.cost} </div>
                 </div>
               </div>
               <div class="card-right">
@@ -192,26 +203,27 @@ function displayCards()
             </button>
             
             ${r.open ? `
-            <div class="details-grid">
-              <div><div class="detail-label">Employee</div><div class="detail-val">${r.employeeName}</div></div>
-              <div><div class="detail-label">Employee ID</div><div class="detail-val">${r.employeeID}</div></div>
-              <div><div class="detail-label">From</div><div class="detail-val">${r.from}</div></div>
-              <div><div class="detail-label">To</div><div class="detail-val">${r.to}</div></div>
-              <div><div class="detail-label">Start date</div><div class="detail-val">${formateDate(r.startDate)}</div></div>
-              <div><div class="detail-label">End date</div><div class="detail-val">${formateDate(r.endDate)}</div></div>
+            <div class="details-grid responsive-details">
+              <div class="detail-item"><div class="detail-label">Employee</div><div class="detail-val">${r.employeeName}</div></div>
+              <div class="detail-item"><div class="detail-label">Employee ID</div><div class="detail-val">${r.employeeID}</div></div>
+              <div class="detail-item"><div class="detail-label">From</div><div class="detail-val">${r.from}</div></div>
+              <div class="detail-item"><div class="detail-label">To</div><div class="detail-val">${r.to}</div></div>
+              <div class="detail-item"><div class="detail-label">Start date</div><div class="detail-val">${formateDate(r.startDate)}</div></div>
+              <div class="detail-item"><div class="detail-label">End date</div><div class="detail-val">${formateDate(r.endDate)}</div></div>
+              <div class="detail-item"><div class="detail-label">Transport Mode</div><div class="detail-val">${displayMode}</div></div>
+              <div class="detail-item"><div class="detail-label">Est. cost</div><div class="detail-val">₹${r.cost}</div></div>
               <div class="detail-wide"><div class="detail-label">Purpose</div><div class="detail-val">${r.purpose}</div></div>
-              <div class="detail-wide"><div class="detail-label">Est. cost</div><div class="detail-val">₹${r.cost}</div></div>
               
               ${r.status !== 'pending' ? `
-                <div class="detail-wide" style="border-top: 1px dashed #ccc; padding-top: 8px; margin-top: 4px;">
+                <div class="detail-wide" style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 8px; margin-top: 4px;">
                   <div class="detail-label">Your Remark</div>
-                  <div class="detail-val" style="font-weight: 500; color: ${r.status === 'accepted' ? '#1D9E75' : '#E24B4A'}">
+                  <div class="detail-val" style="font-weight: 500; color: #E8AB30;">
                     ${r.remark || "—"}
                   </div>
                 </div>
                 <div class="detail-wide">
                   <div class="detail-label">Decision Date</div>
-                  <div class="detail-val" style="font-size: 13px; color: #6B7280;">
+                  <div class="detail-val" style="font-size: 13px; color: rgba(255,255,255,0.7);">
                     ${r.actionDate ? formateDate(r.actionDate) : "—"}
                   </div>
                 </div>

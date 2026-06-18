@@ -195,8 +195,9 @@ $(document).ready(function () {
         Swal.fire({ icon: "error", title: "Error", text: "Could not create account. Please try again." });
         return;
       }
+      clearSignUpForm();
 
-      await Swal.fire({ icon: "success", title: " !", text: "You can now log in." });
+      await Swal.fire({ icon: "success", title: "Successfully signing up !", text: "You can now log in." });
       // Close sign-up modal and open login modal
       const signUpModal = bootstrap.Modal.getInstance(document.getElementById("SignUpModal"));
       if (signUpModal) signUpModal.hide();
@@ -239,6 +240,8 @@ $(document).ready(function () {
       // Store without password
       const { password: _pw, ...safeEmployee } = employee;
       localStorage.setItem("loggedEmployee", JSON.stringify(safeEmployee));
+      
+      clearLoginForm();
 
       await Swal.fire({
         icon: "success",
