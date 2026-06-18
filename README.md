@@ -95,7 +95,101 @@ TMS/
 ```
 ---
 
+```markdown
+# ⚙️ Main Logic & Workflows
 
+This section breaks down the core business logic governing how **Taskify** processes data states, loads dashboards, handles deletions, and establishes structural links between organizational roles.
+
+---
+
+### 🗑️ 1. Soft Delete & Single Item Restore Logic
+
+Instead of permanently removing records from `db.json`, Taskify uses a **Boolean status flag** (`isDeleted`) to handle temporary item removal and restoration.
+
+#### 🔄 How it works:
+* **The Flag:** Every travel request object in the database defaults to `"isDeleted": false`.
+* **Active View Feed:** The Employee Dashboard pulls data using `?isDeleted=false`, keeping deleted items hidden from the active panel.
+* **Soft Delete Action:** Clicking "Delete" sends an asynchronous `PATCH` request to flip that specific item ID's flag to `true`.
+* **Particular Restore Action:** To restore a *single specific item*, the application targets its unique ID and updates the flag back to `false`.
+
+```plaintext
+[Active Request: isDeleted = false] 
+       │
+       ▼ (User clicks Delete)
+[PATCH Request sent to /travelRequests/:id] ──► Changes flag to [isDeleted = true]
+       │
+       ▼ (User views Trash & clicks Restore on that specific ID)
+[PATCH Request sent to /travelRequests/:id] ──► Flips flag back to [isDeleted = false]
+
+```
+
+---
+
+### 🔐 2. Employee Dashboard Initialization Flow
+
+The application secures dashboard panels and loads contextual user data using persistent local browser states.
+
+#### 🔄 How it works:
+
+1. When a user logs in, their profile data object is stored as a string inside browser `localStorage` under the key `"loggedEmployee"`.
+2. When the dashboard page boots, it reads the storage key. If missing, it kicks the user back to the login screen (`index.html`).
+3. If validated, it extracts the unique account ID (`employeeID`) to request only records belonging to that user.
+
+```plaintext
+[Page Initialization] 
+       │
+       ▼
+[Check localStorage for "loggedEmployee"]
+       │
+       ├──► (If Null / Empty) ──► [Redirect to index.html Login Portal]
+       │
+       └──► (If Account Exists)
+                 │
+                 ▼
+       [Extract user.employeeID]
+                 │
+                 ▼
+       [API Fetch: /travelRequests?employeeID={ID}&isDeleted=false]
+                 │
+                 ▼
+       [Render Dynamic Cards & Counter Metrics]
+
+```
+
+---
+
+### 🤝 3. Employee-to-Manager Data Matching Architecture
+
+Employees and managers are decoupled but functionally tied together through a shared enterprise property: the **`projectID`**.
+
+#### 🔄 How it works:
+
+* **The Hook:** When an employee registers, they select or are assigned a structural `projectID`.
+* **The Submission:** When making a travel request, the employee's script injects their unique `projectID` directly into the trip item payload sent to `db.json`.
+* **The Manager Filter:** When a manager logs in, the platform reads the manager's `projectID` and runs a targeted filter query. The manager *only* pulls requests where the trip's project identity perfectly matches their own.
+
+```plaintext
+   [ Employee Account ]                       [ Manager Account ]
+ (Assigned projectID: "P101")              (Assigned projectID: "P101")
+             │                                         │
+             ▼                                         ▼
+   [Creates Travel Request]                            │
+             │                                         │
+             ▼                                         ▼
+[Injects "projectID": "P101" into Trip Object]         │
+             │                                         │
+             └───────────────► [(db.json)] ◄───────────┘
+                                   │
+                                   ▼ (Manager Dashboard Query)
+             [Fetch: /travelRequests?projectID=P101&isDeleted=false]
+
+```
+
+```
+
+```
+
+---
 # 📸 Screenshots
 
 ## Landing & Authentication Page
