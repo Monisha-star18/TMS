@@ -183,11 +183,6 @@ Employees and managers are decoupled but functionally tied together through a sh
              [Fetch: /travelRequests?projectID=P101&isDeleted=false]
 
 ```
-
-```
-
-```
-
 ---
 # 📸 Screenshots
 
