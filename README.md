@@ -95,7 +95,6 @@ TMS/
 ```
 ---
 
-```markdown
 # ⚙️ Main Logic & Workflows
 
 This section breaks down the core business logic governing how **Taskify** processes data states, loads dashboards, handles deletions, and establishes structural links between organizational roles.
