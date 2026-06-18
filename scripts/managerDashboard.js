@@ -313,4 +313,3 @@ function displayAll() { displayMetrics(); displayFilters(); displayCards(); }
 getRequest().catch(() => {
   Swal.fire({icon: "error",title: "Cannot connect to server",text: "Make sure json-server is running on port 3000."});
 });
-

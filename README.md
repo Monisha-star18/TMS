@@ -1,97 +1,99 @@
-Here is a complete, beautifully structured `README.md` file customized exactly for your **TravelSync** project, matching the style, sections, and emojis of the sample file you provided.
+Here is a clean, production-ready `README.md` custom-tailored to your files (`index.html`, `employeeDashboard.js`, `managerDashboard.js`, `db.json`, etc.) matching the layout style of your reference file.
 
 ---
 
-# ✈️ TravelSync - Corporate Travel Request & Approval Management System
+```markdown
+# ✈️ TravelSync — Travel Request Management System
 
 ## 📖 Overview
 
-**TravelSync** is a web-based Corporate Travel Request & Approval Management System designed to simplify business trip logging and reimbursement tracking within organizations. The system features a **Unified Workstation Page (`sharedDashboard.html`)** that dynamically alters its interface and capabilities depending on whether an **Employee** or a **Manager** logs in.
+**TravelSync** is a streamlined, web-based corporate travel request management application designed to handle end-to-end travel logistics for organizational workflows. Employees can painlessly file fresh travel itineraries, manage drafts, monitor approvals, and restore mistakenly deleted requests. Concurrently, Managers gain a dedicated oversight panel to review, evaluate, provide official remarks, and update travel statuses in real time.
 
-Employees can seamlessly submit travel itineraries, calculate total expected costs, and monitor real-time approvals, while Managers can oversee their respective project workflows, audit expenditures, and approve or reject travel requests with descriptive feedback remarks.
+Built on top of a highly responsive front-end layer and an asynchronous REST ecosystem, TravelSync bridges structural data integrity with lightweight, client-side efficiency.
 
 ---
 
 ## 📑 Table of Contents
 
-* [Overview](https://www.google.com/search?q=%23-overview)
-* [Key Features](https://www.google.com/search?q=%23-key-features)
-* [System Workflow](https://www.google.com/search?q=%23-system-workflow)
-* [Technology Stack](https://www.google.com/search?q=%23-technology-stack)
-* [Project Structure](https://www.google.com/search?q=%23-project-structure)
-* [Installation & Setup](https://www.google.com/search?q=%23-installation--setup)
-* [Detailed Page Breakdown](https://www.google.com/search?q=%23-detailed-page-breakdown)
-* [Conclusion](https://www.google.com/search?q=%23-conclusion)
+* [Overview](#-overview)
+* [Features](#-features)
+* [Workflow & Architectural Guardrails](#-workflow--architectural-guardrails)
+* [Technology Stack](#-technology-stack)
+* [Project Structure](#-project-structure)
+* [Installation & Setup](#-installation--setup)
+* [Key Functionalities](#-key-functionalities)
+* [Conclusion](#-conclusion)
 
 ---
 
-## 🌟 Key Features
+## 🎯 Features
 
-### 👤 Employee View Mode
+### 🏢 Core Architecture
+* **Unified Theme Tokenization:** Centrally coordinated variables (`theme.css` & `sharedDashboard.css`) deploying a professional **Deep Navy & Gold** theme with high contrast readability rules.
+* **Role-Based Routing Routing Simulation:** Explicit verification layers processing individual `localStorage` access tokens (`loggedEmployee`). Redirects unauthorized session profiles natively to fallback viewports.
 
-* **Profile Verification:** Dynamic sidebar offcanvas displaying user-specific details (ID, Email, Project ID, Department).
-* **Live Expense Analytics:** Real-time counters calculating totals for **Total Requests**, **Pending**, **Approved**, and **Rejected** spend amounts.
-* **Smart Travel Logging:** Form creation for new trips with strict automated constraints to block invalid entries.
-* **Soft Deletion & Recovery Trash Can:** Hidden request bin layout allowing users to review and completely restore soft-deleted items instantly.
-* **Interactive Live Search:** Quick text filtering to isolate cards by specific destination cities or business purposes.
+### 👥 Employee Panel
+* **Responsive Data Metrics:** Live calculation trackers reporting aggregated totals across distinct status buckets (`Pending`, `Accepted`, `Rejected`).
+* **Interactive Filtering & Tracking:** Fluid lookup using reactive text evaluation matched against structural purpose strings or geographical locations.
+* **Granular Lifecycle CRUD Management:** Standardized request creation, local parameter parsing, updates via isolated edit panels, soft-deletion handling, and an active contextual backup restore system.
 
-### 👔 Manager View Mode
-
-* **Project Isolation Filtering:** Automatically locks the interface down to only show requests originating from employees assigned to the manager's exact `projectID`.
-* **Administrative Interventions:** Restricts regular editing permissions and brings up custom approval/rejection actionable modulators.
-* **Compulsory Decision Auditing:** Rejection and approval requests are blocked from saving unless a mandatory justification comment statement is recorded.
-* **Automatic Audit Timestamps:** Tracks decision moments precisely by generating ISO standardized server-side timestamps upon entry submission.
+### 👔 Manager Workspace
+* **Project-Scoped Isolation:** Automatic request scoping matching incoming records natively to matching enterprise project scopes (`projectID`).
+* **Status Modulation:** Single-click approval / denial controls backed by contextual input requirements enforcing structured validation strings before patching records.
 
 ---
 
-## 🔄 System Workflow
+## 🔄 Workflow & Architectural Guardrails
+
+### 1. Data Layer Flow
+```mermaid
+graph TD
+    A[Landing Interface / Sign-In] -->|Session Validation| B{Role Assignment}
+    B -->|role: employee| C[Employee Dashboard]
+    B -->|role: manager| D[Manager Dashboard]
+    C <-->|Asynchronous Fetch / Mutate| E[(db.json via JSON-Server)]
+    D <-->|Asynchronous Review / Patch| E
 
 ```
-   [ Authentication Gateway (index.html) ]
-                     │
-        Verifies Role & Token API Check
-                     │
-                     ▼
-    [ Unified UI Hub (sharedDashboard.html) ]
-         │                               │
-         ▼                               ▼
-  (Employee Mode View)            (Manager Mode View)
-  - Log Travel Requests           - Filter by Team Project
-  - Track Expense Approvals       - Mandatory Remarks Form
-  - Soft-delete & Restore Records - State Mutation Audits
 
-```
+### 2. Guardrail Logic Validation
+
+* **Temporal Boundaries:** Inputs enforce rigid baseline temporal barriers restricting entry to past calendar seasons, preventing manual backdating.
+* **Regex Structural Filters:** Standardized validations tracking parameters across structural boundaries:
+* **Email Patterns:** Enforces active domain syntax checks (`^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$`).
+* **System IDs:** Enforces strict identifier structures matching specific organizational conventions.
+* **Cryptographic Strength Enforcements:** Explicit check parameters validating complexity levels (Uppercase, Lowercase, Numerical Digit, and Special Characters).
+
+
 
 ---
 
 ## 🛠️ Technology Stack
 
-* **Frontend Layout Framework:** HTML5, CSS3, and **Bootstrap 5.3** (Fluid layout utilities, interactive responsive modal overlays, flex grids).
-* **Application Component Logic:** **JavaScript (ES6+)** and **jQuery 4.0.0** (Event propagation listeners, live styling validation states, dynamic DOM card generation).
-* **Alert & Notification Framework:** **SweetAlert2** (Polished user-facing confirmation modals, error catch notifications, and validation alerts).
-* **Asynchronous Communication Layer:** Native JavaScript `async/await` syntax executing asynchronous network transactions via the Fetch API.
-* **Relational Storage Engine:** Localized REST mock API database running via **`json-server`** targeting `db.json`.
+* **Front-End Layouts:** HTML5, CSS3 Custom Properties (Variables), Bootstrap v5.3.8
+* **Typography & Icons:** Google Fonts (Plus Jakarta Sans, Space Grotesk), Tabler Icons Core
+* **Dynamic Script Execution:** Vanilla JavaScript (ES6+ Modules / Fetch API), jQuery v4.0.0 (Form Layout Parsing & Validations)
+* **Interface Feedback Enhancements:** SweetAlert2 (Dynamic Async Modals)
+* **Local Backend Mock Environment:** JSON-Server Engine (Asynchronous REST Architecture Mapping)
 
 ---
 
 ## 📂 Project Structure
 
-```text
-TravelSync/
-│
+```plaintext
+├── db.json                       # Central local mock database file
+├── readme.md                     # Documentation file
 ├── pages/
-│   ├── index.html               # Gateway Page: Public Branding, FAQ Accordion, & Login Form
-│   └── sharedDashboard.html     # Core Functional UI Canvas (Shared Employee & Manager Dashboard)
-│
+│   ├── index.html                # Main portal registration / landing page
+│   ├── employeeDashboard.html    # Employee-facing request interface 
+│   └── managerDashboard.html     # Supervisor-facing review panel
 ├── scripts/
-│   ├── landingPage.js           # Auth Gatekeeper: Form resets, RegEx validations, & local token saves
-│   └── sharedDashboard.js       # Unified Dashboard Brain: Dynamic role checks, metrics, & modal binds
-│
-├── styles/
-│   ├── theme.css                # Global Visual Tokens: Deep Navy Blue (#1B2E5E) & Metallic Gold (#C9920A)
-│   └── employeeDashboard.css    # Layout Tokens: Dashboard grid systems, metric blocks, status badges
-│
-└── db.json                      # Mock Database File: Relational collections for Departments, Employees, and Requests
+│   ├── landingPage.js            # Registration controls & Regex validation
+│   ├── employeeDashboard.js      # Employee request lifecycles & filters
+│   └── managerDashboard.js       # Manager approval mechanisms
+└── styles/
+    ├── theme.css                 # Brand typography & landing utilities
+    └── sharedDashboard.css       # Unified design layout configurations
 
 ```
 
@@ -99,74 +101,66 @@ TravelSync/
 
 ## 🚀 Installation & Setup
 
-Follow these simple steps to set up and run the project locally on your machine.
+Follow these straightforward steps to deploy TravelSync on your local development system.
 
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/travelsync.git
+git clone [https://github.com/Monisha-star18/TMS.git](https://github.com/Monisha-star18/TMS.git)
+cd TMS
 
 ```
 
-### 2️⃣ Navigate to the Project Folder
+### 2️⃣ Initialize Database Engine
 
-```bash
-cd travelsync
-
-```
-
-### 3️⃣ Install JSON Server Globally
+TravelSync depends on `json-server` to emulate a fully functional REST API backend. Install it globally or run it directly through npm:
 
 ```bash
 npm install -g json-server
 
 ```
 
-### 4️⃣ Launch the Mock REST Server
+### 3️⃣ Run the API Server
 
-Run the local database server on standard port `3000`:
+Launch the server watch pipeline pointing directly to the project's mock database file on port `3000`:
 
 ```bash
 json-server --watch db.json --port 3000
 
 ```
 
-### 5️⃣ Execute the Application
+### 4️⃣ Deploy Application Workspace
 
-Open `pages/index.html` inside your favorite browser using **Live Server** (or any local web file server extension).
+Open the deployment root location `pages/index.html` inside a web browser using **Live Server** inside your development editor or any preferred local web file server.
 
 ---
 
-## 📄 Detailed Page Breakdown
+## 🎯 Key Functionalities
 
-### 🔐 1. Gateway Authentication Panel (`index.html` / `landingPage.js`)
+### 👤 Employee View
 
-* **Purpose:** Handles account sign-up and sign-in capabilities, applying real-time field evaluation algorithms to clean inputs before allowing connection routines.
-* **Logic Framework:** Form fields monitor input matching behaviors using custom client-side Regular Expression parameters:
-* `emailRegex`: Enforces structural email compliance parameters.
-* `passwordRegex`: Commands at least 1 uppercase letter, 1 lowercase letter, 1 digit, 1 unique special symbol, and restrictions between 8 and 15 total characters.
-* `idRegex`: Enforces proper corporate identifier syntax limits (e.g., `MGR0001`, `ST26302`).
+* **Register:** Register account under a unique identity mapped directly to specific operational Departments (IT, Marketing, Finance).
+* **Submit Itineraries:** Send trip location targets, travel modes (`plane`, `car`, `train`), cost forecasts, and business descriptions.
+* **Soft Delete & Restore:** Move active requests into a dynamic soft-delete repository array where they can be audited or safely restored without data loss.
 
+### 👔 Manager View
 
-* **Session Initialization:** Successfully matched profiles extract confidential records safely and save clear operational details inside `localStorage` under the object label `"loggedEmployee"`.
-
-### 🎛️ 2. The Shared Workstation Dashboard (`sharedDashboard.html` / `sharedDashboard.js`)
-
-This unified workspace runs an immediate structural check during execution. If an unauthenticated session is caught, it automatically redirects the window back to `index.html`. It then decodes user roles to conditionally switch configurations:
-
-#### 👤 Employee Operations View
-
-* **Temporal Boundaries Check:** Destroys layout-breaking inputs by overriding native browser properties. Dates are automatically locked securely between `CurrentYear - 1` and `CurrentYear + 5`.
-* **Transit Dropdown Constraints:** Validates travel selectors directly. Form entries reject unselected dropdown choices, turning the field red (`is-invalid`) and stopping submission to ensure a valid option (`plane`, `train`, `car`) is recorded.
-* **Soft Delete Reversal:** Flipping item deletions writes `"isDeleted": true` to the server instead of executing structural purges. Users click the trash selector to view hidden items and trigger individual `PATCH` updates to bring them back online.
-
-#### 👔 Manager Oversight View
-
-* **Project Boundary Shielding:** Appends explicit parameters directly into fetch calls (`/travelRequests?projectID=...`), preventing managers from accessing files outside of their specified team networks.
-* **Forced Justification Loops:** Submission states for processing travel requests flag items dynamically. If an administrative approval attempt leaves comments blank or fails to select a non-pending status, execution is cleanly blocked with a descriptive SweetAlert notification.
+* **Audit Dashboard:** View high-level request queues tracking project allocations automatically.
+* **Approve / Reject Action Processing:** Fast-track actions or block requests, requiring explicit operational remarks before publishing state updates.
+* **History Log Tracking:** Track timestamps and record approval operations with high precision.
 
 ---
 
 ## 🏆 Conclusion
 
-**TravelSync** provides a streamlined, secure solution for processing corporate travel requests and approving reimbursement workflows. By condensing multi-page employee forms and operational review boards into a single **Unified Dashboard**, the ecosystem maximizes codebase reuse, reduces server overhead, and provides an instantly reactive user experience for both employees and corporate managers alike.
+**TravelSync** provides an elegant, scalable approach for handling corporate travel tracking requirements. By dividing application tasks cleanly between employee workflow requests and supervisor review panels, the platform establishes clear transparency, minimizes manual entry mistakes, and drives high efficiency across organizational teams.
+
+```
+***
+
+### 💡 Key Tailored Optimizations:
+1. **Dynamic Mapping Included:** Reflected your specific mappings (IT, Marketing, Finance and plane/car/train modes).
+2. **True System Attributes:** Used actual ID and routing properties directly present in your source code files like `loggedEmployee`, soft-deletion keys (`isDeleted`), and port `3000`.
+3. **Mermaid Flow Diagram:** Included a data flow map inside the markdown to cleanly document the architecture.
+
+```
