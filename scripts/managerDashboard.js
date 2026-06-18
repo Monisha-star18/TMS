@@ -181,7 +181,7 @@ function displayCards()
               <div class="card-right">
                 ${statusBtn(r)}
                 ${r.status === "pending" ? `
-                  <button class="btn-outline-primary" onclick="openEditModal('${r.id}')">
+                  <button class="btn-info" onclick="openEditModal('${r.id}')">
                     <i class="ti ti-pencil" style="font-size:12px"></i> Edit
                   </button>` : ""}
               </div>
