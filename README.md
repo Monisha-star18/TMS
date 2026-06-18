@@ -251,7 +251,7 @@ pages/index.html
 
 ```
 
-using Live Server or any local static web hosting environment.
+use any local static web hosting environment.
 
 ---
 
