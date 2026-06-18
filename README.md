@@ -192,7 +192,8 @@ Employees and managers are decoupled but functionally tied together through a sh
 ---
 
 ## Employee Dashboard
-<img width="1899" height="844" alt="{3550B5CF-6382-481D-836E-14CA79FDBE1F}" src="https://github.com/user-attachments/assets/0323afc5-9227-465d-9b5f-d8a6a0589560" />
+<img width="1920" height="859" alt="{0E7A6007-DE54-4A4E-A243-1264793770C9}" src="https://github.com/user-attachments/assets/7e849acb-e74d-4a68-8762-9b49084136c4" />
+
 
 ---
 
@@ -202,7 +203,8 @@ Employees and managers are decoupled but functionally tied together through a sh
 ---
 
 ## Manager Dashboard Overview
-<img width="1920" height="830" alt="{4ABAB8D2-667C-4036-BC80-D0C405DC1178}" src="https://github.com/user-attachments/assets/14b63465-4033-4ce5-912f-310512a05c98" />
+<img width="1902" height="868" alt="{D163377A-631E-414A-A9F7-22F678E49F78}" src="https://github.com/user-attachments/assets/57e32031-9123-4d0f-8d9c-e7d0a51d1a73" />
+
 
 ---
 
