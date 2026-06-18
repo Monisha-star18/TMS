@@ -193,7 +193,7 @@ function renderRestoreModal()
           <div class="card-left">
             <div>
               <div class="trip-title">${r.from} → ${r.to}</div>
-              <div class="trip-sub">${r.purpose} · ${days} days · ₹${r.cost}</div>
+              <div class="trip-sub">${r.purpose} · ₹${r.cost}</div>
             </div>
           </div>
           <div class="card-right">

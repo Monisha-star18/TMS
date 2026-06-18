@@ -1,72 +1,172 @@
-
-# TravelSync — Project Overview
-
-TravelSync is a web application that helps a company manage its employees' business travel requests.
-
-Instead of using paperwork, employees can log in to submit where they need to go and how much it will cost. Managers can log in to review these requests, see their team's budget, and either **Accept** or **Reject** the trip with a written reason.
+Here is a complete, beautifully structured `README.md` file customized exactly for your **TravelSync** project, matching the style, sections, and emojis of the sample file you provided.
 
 ---
 
-## 🏗️ The Tech Stack (What it's built with)
+# ✈️ TravelSync - Corporate Travel Request & Approval Management System
 
-* **HTML5 & CSS3:** Used to build the structure of the website and paint it with the company's brand colors (Deep Navy Blue & Gold).
-* **Bootstrap 5.3:** A design toolkit that makes sure the website looks neat, organized, and works well on both mobile screens and laptops.
-* **JavaScript & jQuery:** The "brains" of the webpage. They check if the user typed their email and password correctly and handle clicking buttons without reloading the page.
-* **SweetAlert2:** A tool that pops up pretty alert boxes (like "Login Successful!" or "Please fill out this field").
-* **Mock Database (`db.json`):** A simple text file that acts as our database to remember user profiles, passwords, and travel logs.
+## 📖 Overview
 
----
+**TravelSync** is a web-based Corporate Travel Request & Approval Management System designed to simplify business trip logging and reimbursement tracking within organizations. The system features a **Unified Workstation Page (`sharedDashboard.html`)** that dynamically alters its interface and capabilities depending on whether an **Employee** or a **Manager** logs in.
 
-## 📂 Project Structure (Where things are)
-
-* **`index.html` & `landingPage.js`:** The entry gate where users log in or sign up.
-* **`sharedDashboard.html` & `sharedDashboard.js`:** The main control center. It dynamically shifts what it displays depending on whether an **Employee** or a **Manager** logs in.
-* **`theme.css` & `employeeDashboard.css`:** The style files that control colors, fonts, margins, and card designs.
-* **`db.json`:** The database file storing everything safely.
+Employees can seamlessly submit travel itineraries, calculate total expected costs, and monitor real-time approvals, while Managers can oversee their respective project workflows, audit expenditures, and approve or reject travel requests with descriptive feedback remarks.
 
 ---
 
-## 📄 Page-by-Page Breakdown
+## 📑 Table of Contents
 
-### 1. Login & Sign-Up Gate (`index.html`)
-
-* **Purpose:** To verify who you are and send you to the right view.
-* **How it works (The Flow):** 1. You type your Employee ID and Password.
-2. The code checks the database to see if you exist.
-3. If everything matches, it saves your name and role to the browser's temporary memory (`localStorage`).
-4. It opens the **Shared Dashboard** page.
-* **The Logic:** It uses strict rules (called Regex) to verify inputs in real-time. For example: Passwords *must* have at least one uppercase letter, one number, and one special character (like `@`) so accounts stay safe.
+* [Overview](https://www.google.com/search?q=%23-overview)
+* [Key Features](https://www.google.com/search?q=%23-key-features)
+* [System Workflow](https://www.google.com/search?q=%23-system-workflow)
+* [Technology Stack](https://www.google.com/search?q=%23-technology-stack)
+* [Project Structure](https://www.google.com/search?q=%23-project-structure)
+* [Installation & Setup](https://www.google.com/search?q=%23-installation--setup)
+* [Detailed Page Breakdown](https://www.google.com/search?q=%23-detailed-page-breakdown)
+* [Conclusion](https://www.google.com/search?q=%23-conclusion)
 
 ---
 
-### 2. The Main Workstation (`sharedDashboard.html`)
+## 🌟 Key Features
 
-This is a single webpage, but it acts like two completely different screens depending on your role.
+### 👤 Employee View Mode
 
-#### View A: Employee Mode (For regular staff)
+* **Profile Verification:** Dynamic sidebar offcanvas displaying user-specific details (ID, Email, Project ID, Department).
+* **Live Expense Analytics:** Real-time counters calculating totals for **Total Requests**, **Pending**, **Approved**, and **Rejected** spend amounts.
+* **Smart Travel Logging:** Form creation for new trips with strict automated constraints to block invalid entries.
+* **Soft Deletion & Recovery Trash Can:** Hidden request bin layout allowing users to review and completely restore soft-deleted items instantly.
+* **Interactive Live Search:** Quick text filtering to isolate cards by specific destination cities or business purposes.
 
-* **Purpose:** To let employees book trips, check prices, and see if their boss approved them.
-* **How it works (The Flow):**
-1. The page checks your login token. If you aren't logged in, it kicks you back to the login page.
-2. It displays big counter boxes showing your total travel spending: **Total Spent**, **Pending Amount**, **Approved Amount**, and **Rejected Amount**.
-3. It shows your past trips as clean visual cards. Green means approved, Amber means waiting, and Red means rejected.
+### 👔 Manager View Mode
+
+* **Project Isolation Filtering:** Automatically locks the interface down to only show requests originating from employees assigned to the manager's exact `projectID`.
+* **Administrative Interventions:** Restricts regular editing permissions and brings up custom approval/rejection actionable modulators.
+* **Compulsory Decision Auditing:** Rejection and approval requests are blocked from saving unless a mandatory justification comment statement is recorded.
+* **Automatic Audit Timestamps:** Tracks decision moments precisely by generating ISO standardized server-side timestamps upon entry submission.
+
+---
+
+## 🔄 System Workflow
+
+```
+   [ Authentication Gateway (index.html) ]
+                     │
+        Verifies Role & Token API Check
+                     │
+                     ▼
+    [ Unified UI Hub (sharedDashboard.html) ]
+         │                               │
+         ▼                               ▼
+  (Employee Mode View)            (Manager Mode View)
+  - Log Travel Requests           - Filter by Team Project
+  - Track Expense Approvals       - Mandatory Remarks Form
+  - Soft-delete & Restore Records - State Mutation Audits
+
+```
+
+---
+
+## 🛠️ Technology Stack
+
+* **Frontend Layout Framework:** HTML5, CSS3, and **Bootstrap 5.3** (Fluid layout utilities, interactive responsive modal overlays, flex grids).
+* **Application Component Logic:** **JavaScript (ES6+)** and **jQuery 4.0.0** (Event propagation listeners, live styling validation states, dynamic DOM card generation).
+* **Alert & Notification Framework:** **SweetAlert2** (Polished user-facing confirmation modals, error catch notifications, and validation alerts).
+* **Asynchronous Communication Layer:** Native JavaScript `async/await` syntax executing asynchronous network transactions via the Fetch API.
+* **Relational Storage Engine:** Localized REST mock API database running via **`json-server`** targeting `db.json`.
+
+---
+
+## 📂 Project Structure
+
+```text
+TravelSync/
+│
+├── pages/
+│   ├── index.html               # Gateway Page: Public Branding, FAQ Accordion, & Login Form
+│   └── sharedDashboard.html     # Core Functional UI Canvas (Shared Employee & Manager Dashboard)
+│
+├── scripts/
+│   ├── landingPage.js           # Auth Gatekeeper: Form resets, RegEx validations, & local token saves
+│   └── sharedDashboard.js       # Unified Dashboard Brain: Dynamic role checks, metrics, & modal binds
+│
+├── styles/
+│   ├── theme.css                # Global Visual Tokens: Deep Navy Blue (#1B2E5E) & Metallic Gold (#C9920A)
+│   └── employeeDashboard.css    # Layout Tokens: Dashboard grid systems, metric blocks, status badges
+│
+└── db.json                      # Mock Database File: Relational collections for Departments, Employees, and Requests
+
+```
+
+---
+
+## 🚀 Installation & Setup
+
+Follow these simple steps to set up and run the project locally on your machine.
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/your-username/travelsync.git
+
+```
+
+### 2️⃣ Navigate to the Project Folder
+
+```bash
+cd travelsync
+
+```
+
+### 3️⃣ Install JSON Server Globally
+
+```bash
+npm install -g json-server
+
+```
+
+### 4️⃣ Launch the Mock REST Server
+
+Run the local database server on standard port `3000`:
+
+```bash
+json-server --watch db.json --port 3000
+
+```
+
+### 5️⃣ Execute the Application
+
+Open `pages/index.html` inside your favorite browser using **Live Server** (or any local web file server extension).
+
+---
+
+## 📄 Detailed Page Breakdown
+
+### 🔐 1. Gateway Authentication Panel (`index.html` / `landingPage.js`)
+
+* **Purpose:** Handles account sign-up and sign-in capabilities, applying real-time field evaluation algorithms to clean inputs before allowing connection routines.
+* **Logic Framework:** Form fields monitor input matching behaviors using custom client-side Regular Expression parameters:
+* `emailRegex`: Enforces structural email compliance parameters.
+* `passwordRegex`: Commands at least 1 uppercase letter, 1 lowercase letter, 1 digit, 1 unique special symbol, and restrictions between 8 and 15 total characters.
+* `idRegex`: Enforces proper corporate identifier syntax limits (e.g., `MGR0001`, `ST26302`).
 
 
-* **The Logic:** * **Date Safeguards:** It stops users from accidentally typing crazy dates (like the year `20265`). It locks choices to realistic current timeframes.
-* **No Blank Dropdowns:** It forces you to actively choose a travel mode (Plane, Train, or Car) from a clean drop-down list. If you leave it empty, the form turns red and won't let you submit.
-* **Recycle Bin (Restore):** If you delete a request by mistake, it doesn't vanish forever. It gets hidden. You can click a button to view your deleted items and click "Restore" to bring them back.
+* **Session Initialization:** Successfully matched profiles extract confidential records safely and save clear operational details inside `localStorage` under the object label `"loggedEmployee"`.
 
+### 🎛️ 2. The Shared Workstation Dashboard (`sharedDashboard.html` / `sharedDashboard.js`)
 
+This unified workspace runs an immediate structural check during execution. If an unauthenticated session is caught, it automatically redirects the window back to `index.html`. It then decodes user roles to conditionally switch configurations:
 
-#### View B: Manager Mode (For bosses)
+#### 👤 Employee Operations View
 
-* **Purpose:** To let managers track their specific project teams, look at costs, and make approval decisions.
-* **How it works (The Flow):**
-1. The dashboard detects that a manager has logged in. It hides the "Add Request" button since managers don't submit requests here.
-2. It filters the database so the manager **only sees employees belonging to their exact project ID**.
-3. It displays the name and ID of the staff member on top of each travel card.
+* **Temporal Boundaries Check:** Destroys layout-breaking inputs by overriding native browser properties. Dates are automatically locked securely between `CurrentYear - 1` and `CurrentYear + 5`.
+* **Transit Dropdown Constraints:** Validates travel selectors directly. Form entries reject unselected dropdown choices, turning the field red (`is-invalid`) and stopping submission to ensure a valid option (`plane`, `train`, `car`) is recorded.
+* **Soft Delete Reversal:** Flipping item deletions writes `"isDeleted": true` to the server instead of executing structural purges. Users click the trash selector to view hidden items and trigger individual `PATCH` updates to bring them back online.
 
+#### 👔 Manager Oversight View
 
-* **The Logic:**
-* **Forced Comments:** If a manager clicks "Approve" or "Reject", they *cannot* leave the decision note blank. The system forces them to type a short explanation before saving.
-* **Instant Updates:** The moment the manager hits save, a background network message (`PATCH`) updates the database with the decision text and records the exact time the decision was made. The employee instantly sees the update on their screen.
+* **Project Boundary Shielding:** Appends explicit parameters directly into fetch calls (`/travelRequests?projectID=...`), preventing managers from accessing files outside of their specified team networks.
+* **Forced Justification Loops:** Submission states for processing travel requests flag items dynamically. If an administrative approval attempt leaves comments blank or fails to select a non-pending status, execution is cleanly blocked with a descriptive SweetAlert notification.
+
+---
+
+## 🏆 Conclusion
+
+**TravelSync** provides a streamlined, secure solution for processing corporate travel requests and approving reimbursement workflows. By condensing multi-page employee forms and operational review boards into a single **Unified Dashboard**, the ecosystem maximizes codebase reuse, reduces server overhead, and provides an instantly reactive user experience for both employees and corporate managers alike.
