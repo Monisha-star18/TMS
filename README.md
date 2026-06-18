@@ -89,67 +89,99 @@ TMS/
 └── styles/
     ├── theme.css                 # Color palettes, typography & roots
     └── sharedDashboard.css       # Unified interface layout styles
+```
 ---
 
-#📸 Screenshots
 
-Landing & Authentication Page
+# 📸 Screenshots
 
-
-Employee Dashboard
-
-Create Travel Request
-
-Manager Dashboard Overview
-
-Review Action Modal
+## Landing & Authentication Page
+<img width="1902" height="885" alt="{626C4E74-3888-4487-8575-D34B0828B291}" src="https://github.com/user-attachments/assets/98a61346-4bcd-4ec6-b8a7-49baa8ad0b22" />
 
 ---
 
-#🚀 Installation
+## Employee Dashboard
+<img width="1899" height="844" alt="{3550B5CF-6382-481D-836E-14CA79FDBE1F}" src="https://github.com/user-attachments/assets/0323afc5-9227-465d-9b5f-d8a6a0589560" />
 
-#1️⃣ Clone Repository
+---
+
+## Create Travel Request
+<img width="1920" height="870" alt="{54145BEF-D785-4906-B8D4-937CA2D9AE01}" src="https://github.com/user-attachments/assets/187c3282-15bc-460d-9e23-73caf64b3733" />
+
+---
+
+## Manager Dashboard Overview
+<img width="1920" height="830" alt="{4ABAB8D2-667C-4036-BC80-D0C405DC1178}" src="https://github.com/user-attachments/assets/14b63465-4033-4ce5-912f-310512a05c98" />
+
+---
+
+## Review Action Modal
+<img width="1920" height="864" alt="{A3E2B694-626E-4940-9FCA-DA323764A57A}" src="https://github.com/user-attachments/assets/e81c67ed-4d20-4023-8f5c-d08da2992592" />
+
+---
+
+# 🚀 Installation
+
+## 1️⃣ Clone Repository
+
+```bash
 git clone [https://github.com/Monisha-star18/TMS.git](https://github.com/Monisha-star18/TMS.git)
 
+```
 
-#2️⃣ Navigate to Project
+## 2️⃣ Navigate to Project
+
+```bash
 cd TMS
 
-#3️⃣ Install JSON Server
+```
+
+## 3️⃣ Install JSON Server
+
+```bash
 npm install -g json-server
 
-#4️⃣ Start JSON Server
+```
+
+## 4️⃣ Start JSON Server
+
+```bash
 json-server --watch db.json --port 3000
 
-#5️⃣ Run Project
+```
+
+## 5️⃣ Run Project
+
+Open:
+
+```plaintext
 pages/index.html
+
+```
+
 using Live Server or any local static web hosting environment.
 
 ---
 
-#🎯 Key Functionalities
+# 🎯 Key Functionalities
 
-#Employee
-Register and Login securely
+### Employee
 
-Create dynamic trip details with custom pricing arrays
+* Register and Login securely
+* Create dynamic trip details with custom pricing arrays
+* Handle soft deletion rules and retrieve old itineraries
+* Live calculation counters for status types
+* Read direct manager rejection context notes
 
-Handle soft deletion rules and retrieve old itineraries
+### Manager
 
-Live calculation counters for status types
-
-Read direct manager rejection context notes
-
-#Manager
-Auto-filter incoming requests scoped to specific project zones
-
-Grant instant approval status modifications
-
-Fill out precise text reasons before enforcing rejection updates
-
-View high-level team summary reports
+* Auto-filter incoming requests scoped to specific project zones
+* Grant instant approval status modifications
+* Fill out precise text reasons before enforcing rejection updates
+* View high-level team summary reports
 
 ---
 
-#🏆 Conclusion
+# 🏆 Conclusion
+
 Taskify offers an effective, easy-to-use solution for automating company travel requests. By isolating workflows between individual employee requests and project managers, the system ensures complete accountability, zero data loss via soft deletion, and fast execution speeds using modern asynchronous web development methodologies.
